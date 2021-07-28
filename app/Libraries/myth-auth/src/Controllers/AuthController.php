@@ -201,8 +201,8 @@ class AuthController extends Controller
 		$google_client->addScope('email');
 		$google_client->addScope('profile');
 
-		if ($request->getVar('code')) {
-			$token = $google_client->fetchAccessTokenWithAuthCode($request->getVar('code'));
+		if ($this->request->getVar('code')) {
+			$token = $google_client->fetchAccessTokenWithAuthCode($this->request->getVar('code'));
 
 			if (!isset($token['error'])) {
 				$google_client->setAccessToken($token['access_token']);
