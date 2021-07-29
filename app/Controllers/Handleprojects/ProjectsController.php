@@ -76,7 +76,8 @@ class ProjectsController extends BaseController
 
 	// -----------------controller function for deleting the project-----------------//
 	public function delete_project($id)
-	{
+	{	// below check is used so that no one can access the functionality using the url
+		
 		if (!logged_in() && !session()->has('google_user')) {
 			return redirect()->to('/');
 		}
@@ -88,8 +89,9 @@ class ProjectsController extends BaseController
 	}
 
 	// ---------------------Controller function to show previous details of the project in the edit page and update -------
-	//1.) If request is post that is if we want to update data it will validate the rules and save the data
-	//2.)If request is get it the edit page will show the details of the previous project 
+	//1.) If user is not logged in , the user will be redirected to the login page
+	//2.) If request is post that is if we want to update data it will validate the rules and save the data
+	//3.)If request is get it the edit page will show the details of the previous project 
 	public function project_edit_controller($id)
 	{
 		if (!logged_in() && !session()->has('google_user')) {
